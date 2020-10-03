@@ -23,9 +23,13 @@ def uninstall_powercli():
     powercli_modules_names = __get_powercli_modules_names(ZipFile(consts.POWERCLI_ZIP_PATH))
     modules_dir = Powershell.get_modules_dir()
     
-    for module in os.listdir(modules_dir):
-        if module in powercli_modules_names:
-            shutil.rmtree(os.path.join(modules_dir, module))
+    try: 
+        for module in os.listdir(modules_dir):
+            if module in powercli_modules_names:
+                shutil.rmtree(os.path.join(modules_dir, module))
+    except PermissionError as err:
+        print("Access to the file {} is denied.".format(err.filename))
+        print("Make sure you have closed all Powershell windows that use PowerCLI, and try again.")
 
 
 def is_installed():
