@@ -72,3 +72,12 @@ class Powershell(object):
         if stderr:
             raise PowershellException(stderr.decode())
 
+
+class PowershellException(Exception):
+    """
+    Represents a Powershell exception.
+    """
+    
+    def __init__(self, message):
+        self.message = message
+        super().__init__(self.message)
