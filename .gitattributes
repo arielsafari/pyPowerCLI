@@ -1,0 +1,1 @@
+pyPowerCLI/resources/VMware-PowerCLI.zip filter=lfs diff=lfs merge=lfs -text
